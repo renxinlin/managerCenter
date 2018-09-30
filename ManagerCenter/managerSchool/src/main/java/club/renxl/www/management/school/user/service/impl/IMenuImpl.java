@@ -159,6 +159,7 @@ public class IMenuImpl implements IMenu {
 			Permission permissionRootEveryOne, boolean setSuccess) {
 		List<Permission> sons = isAddChildPermission.getChildren();
 		if(sons == null || sons.isEmpty()) {
+			// 属于中序遍历逻辑
 			// 某一个根节点开始递归到子节点都没找到要添加子节点的元素
 			//  	     1
 			//		 2       3

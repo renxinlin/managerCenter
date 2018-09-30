@@ -95,4 +95,16 @@ public interface RolePermissionMapper  {
      * @mbggenerated
      */
     int updateByPrimaryKey(RolePermission record);
+    /**
+     *	 批量插入角色ID以及角色对应的权限ID集合
+     * @param rolePermissions
+     * @return
+     */
+	int insertSelectiveBatch(List<RolePermission> rolePermissions);
+	
+	/**
+	 * 批量更新
+	 * @param rolePermissions
+	 */
+	int updateSelectiveBatch(List<RolePermission> rolePermissions);
 }

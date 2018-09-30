@@ -9,9 +9,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.alibaba.druid.support.json.JSONUtils;
-
-import club.renxl.www.enums.SystemLogEntity;
 import club.renxl.www.management.school.user.dao.domain.Permission;
 import club.renxl.www.management.school.user.service.IMenu;
 import club.renxl.www.management.school.user.service.IPermission;
