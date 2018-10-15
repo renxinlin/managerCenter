@@ -5,10 +5,13 @@ spring:
 #--------------------------
 # 下面为连接池的补充设置，应用到上面所有数据源中
 # 初始化大小，最小，最大
+#     url: jdbc:mysql://47.104.88.31:3306/schcool_management?useUnicode=true&amp;characterEncoding=utf-8
+# username: root
+#    password: abcde12345
   datasource: 
-    url: jdbc:mysql://47.104.88.31:3306/schcool_management?useUnicode=true&amp;characterEncoding=utf-8
+    url: jdbc:mysql://127.0.0.1:3306/schcool_management_back?useUnicode=true&amp;characterEncoding=utf-8
     username: root
-    password: abcde12345
+    password: root
     driverClassName: com.mysql.jdbc.Driver
      
     type: com.alibaba.druid.pool.DruidDataSource

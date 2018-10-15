@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @MapperScan("club.renxl.www.management.school.user.dao")
 @EnableTransactionManagement
 @EnableAsync
+
 public class SchoolManagement {
 	public static void main(String[] args) {
 		new SpringApplicationBuilder(SchoolManagement.class).web(true).run(args);

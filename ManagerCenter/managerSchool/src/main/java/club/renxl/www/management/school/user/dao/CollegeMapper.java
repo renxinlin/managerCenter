@@ -95,4 +95,10 @@ public interface CollegeMapper   {
      * @mbggenerated
      */
     int updateByPrimaryKey(College record);
+    /**
+     * 	获取学校以及学校所在省份信息
+     * @param college
+     * @return
+     */
+	List<College> selectCollegeWithProvinceInfoByCollegeCondition(College college);
 }

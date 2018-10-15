@@ -362,4 +362,15 @@
       create_time = #{createTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <!-- 传入用户ID返回用户具有的权限ID集合 -->
+  
+  <!-- SELECT * FROM usercenter_permission WHERE id in (
+		select 	permission_id from usercenter_role_permission where role_id 
+		 in(select role_id from usercenter_user_role where user_id = 1)
+		) -->
+  <select id="getUsersPermissions" parameterType="java.lang.Long" resultMap="BaseResultMap">
+   	select 	permission_id id from usercenter_role_permission where role_id 
+		in(select role_id from usercenter_user_role where user_id = #{userId} )
+  </select>
 </mapper>

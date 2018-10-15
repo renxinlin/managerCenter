@@ -95,4 +95,11 @@ public interface UserRoleMapper   {
      * @mbggenerated
      */
     int updateByPrimaryKey(UserRole record);
+    
+    /**
+     * 	批量插入
+     * @param userRoles
+     * @return
+     */
+	int insertWithBatch(List<UserRole> userRoles);
 }

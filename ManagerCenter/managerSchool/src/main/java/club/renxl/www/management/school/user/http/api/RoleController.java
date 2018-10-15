@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import club.renxl.www.management.school.user.dao.domain.Permission;
 import club.renxl.www.management.school.user.dao.domain.Role;
 import club.renxl.www.management.school.user.service.IRole;
 import club.renxl.www.pageInfo.PageInfo;

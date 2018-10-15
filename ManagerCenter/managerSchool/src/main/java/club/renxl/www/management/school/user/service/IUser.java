@@ -1,6 +1,9 @@
 package club.renxl.www.management.school.user.service;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+
+import javax.servlet.http.HttpServletRequest;
 
 import club.renxl.www.management.school.user.dao.domain.User;
 import club.renxl.www.pageInfo.PageInfo;
@@ -16,15 +19,15 @@ import club.renxl.www.response.BaseResponse;
  */
 public interface IUser {
 	/**
-	 * 	添加用户
+	 * 	添加用户;以及用户所拥有的角色
 	 * 
 	 * @param user 
 	 * @return
 	 */
-	BaseResponse addUser(User user);
+	BaseResponse addUser(HttpServletRequest request, User user);
 	
 	/**
-	 * 	删除用户
+	 * 	删除用户以及用户所拥有的角色
 	 * 
 	 * @param user id
 	 * @return
@@ -33,7 +36,7 @@ public interface IUser {
 	
 	
 	/**
-	 * 	批量删除用户
+	 * 	批量删除用户以及用户所拥有的角色
 	 * 
 	 * @param users id的集合
 	 * @return
@@ -42,21 +45,23 @@ public interface IUser {
 	
 	
 	/**
-	 * 	更新用户
+	 * 	更新用户信息;删除用户所拥有的权限，新增用户所拥有的权限
 	 * 
 	 * @param user
 	 * @return
 	 */
-	BaseResponse updateUser(User user);
-	
+	BaseResponse updateUser(HttpServletRequest request, User user);
+
 	
 	/**
-	 * 	用户信息查询
+	 * 	用户信息查询以及获取用户所拥有的角色
 	 * 
 	 * @param user
 	 * @return
+	 * @throws ExecutionException  线程执行异常
+	 * @throws InterruptedException 线程执行中断
 	 */
-	BaseResponse lookUser(User user);
+	BaseResponse lookUser(User user) throws InterruptedException, ExecutionException;
 	
 	
 	/**
@@ -66,4 +71,6 @@ public interface IUser {
 	 * @return
 	 */
 	BaseResponse pageUser(PageInfo<User> pageInfo);
+
+
 }

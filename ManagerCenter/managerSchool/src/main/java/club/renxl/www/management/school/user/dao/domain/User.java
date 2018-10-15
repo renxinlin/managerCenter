@@ -18,6 +18,8 @@ public class User {
 	 */
 	private List<UserRole> userRoles;
 	
+	
+	
 	/**
 	 * 用户拥有的权限
 	 */
@@ -162,10 +164,29 @@ public class User {
     /** 主专业id */
     private Integer schoolSubjectId;
 
-    /** 行政区域code */
+    /** 行政区域code作废 */
     private String provincesId;
 
     /** 1男2女0未知 */
     private String sex;
  
+    
+    
+    /** 学校所在省份 */
+    private String schoolProvince;
+
+    /** 学校所在省份编码 */
+    private String schoolProvinceCode;
+
+    /** 学校所在市 */
+    private String schoolCity;
+
+    /** 学校所在市编码 */
+    private String schoolCityCode;
+
+    /** 学校所在区 */
+    private String schoolArea;
+
+    /** 学校所在区编码 */
+    private String schoolAreaCode;
 }

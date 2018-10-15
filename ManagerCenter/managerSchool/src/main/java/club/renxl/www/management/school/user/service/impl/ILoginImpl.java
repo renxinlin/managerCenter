@@ -2,8 +2,11 @@ package club.renxl.www.management.school.user.service.impl;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.renxl.www.management.util.SessionUtil;
 
@@ -18,9 +21,25 @@ import club.renxl.www.response.BaseResponse;
 @Service
 public class ILoginImpl implements ILogin {
 	private static final int ONLY_ONE_ELEMENT_LIST_INDEX = 0;
+	
 	@Autowired
 	private UserMapper userMapper;
 
+	
+	/*
+	 * (non-Javadoc)
+	 * @see club.renxl.www.management.school.user.service.ILogin#getUser(javax.servlet.http.HttpServletRequest)
+	 */
+	@Override
+	public BaseResponse getUser(HttpServletRequest request) {
+		User user = SessionUtil.getUser(request);
+		if(StringUtils.isEmpty(user)) {
+			return BaseResponse.error();
+		}
+		return BaseResponse.success(user);
+	}
+	
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -29,7 +48,7 @@ public class ILoginImpl implements ILogin {
 	 * management.school.user.dao.domain.User)
 	 */
 	@Override
-	public BaseResponse login(User user) {
+	public BaseResponse login(HttpServletRequest request, User user) {
 		// 参数校验
 		if (user == null || user.getUsername() == null || user.getPassword() == null) {
 			return BaseResponse.error("登录失败");
@@ -42,7 +61,7 @@ public class ILoginImpl implements ILogin {
 		Criteria createCriteria = example.createCriteria();
 		createCriteria.andUsernameEqualTo(user.getUsername());
 		List<User> results = userMapper.selectByExample(example);
-		if (results != null && !results.isEmpty()) {
+		if (results == null || results.isEmpty()) {
 			return BaseResponse.error("用户名/密码校验失败...");
 		}
 		
@@ -57,7 +76,7 @@ public class ILoginImpl implements ILogin {
 		if (verify) {
 			// 跳转首页
 			sysUserInfo.setPassword(null);
-			SessionUtil.setUser(sysUserInfo);
+			SessionUtil.setUser(request,sysUserInfo);
 			return BaseResponse.success("登录成功...");
 
 		} else {
@@ -75,19 +94,20 @@ public class ILoginImpl implements ILogin {
 	 * management.school.user.dao.domain.User)
 	 */
 	@Override
-	public BaseResponse loginOut(User user) {
+	public BaseResponse loginOut(HttpServletRequest request,User user) {
 		if(user == null || user.getUsername() == null) {
 			return BaseResponse.error("退出系统失败...");
 		}
-		SessionUtil.getSessionAttribute(user.getUsername());
-		User sessionUser = SessionUtil.getUser();
+		User sessionUser = SessionUtil.getUser(request);
 		if (user.getUsername().equals(sessionUser.getUsername())) {
 			
-			SessionUtil.removerUser();
+			SessionUtil.removeUser(request);
 			return BaseResponse.success("已经退出...");
 
 		}
 		return BaseResponse.error("退出系统失败...");
 	}
+
+	
 
 }

@@ -95,4 +95,11 @@ public interface PermissionMapper   {
      * @mbggenerated
      */
     int updateByPrimaryKey(Permission record);
+    
+    /**
+     *	 根据用户id查询用户具有的权限集合
+     * @param id
+     * @return
+     */
+	List<Permission> getUsersPermissions(Long id);
 }
